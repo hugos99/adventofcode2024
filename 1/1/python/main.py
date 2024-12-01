@@ -28,16 +28,19 @@ def calculate_distance(list1, list2):
     for i in range(len(list1)):
         distance += abs(list1[i] - list2[i])
     return distance
-    
-# read file into the two lists
-rigth_side,left_side = parse_file(path.as_posix()+"/input.txt")
 
-# sort the lists
-rigth_side = sort_list(rigth_side)
-left_side = sort_list(left_side)
 
-#calculate the distance between the two lists
-distance = calculate_distance(rigth_side, left_side)
-print(distance)
+def run():
+    # read file into the two lists
+    rigth_side,left_side = parse_file(path.as_posix()+"/input.txt")
 
+    # sort the lists
+    rigth_side = sort_list(rigth_side)
+    left_side = sort_list(left_side)
+
+    #calculate the distance between the two lists
+    distance = calculate_distance(rigth_side, left_side)
+    print(distance)
+
+run()
 # correct answer is 1970720

@@ -33,10 +33,13 @@ def create_similarity_map(unmapped_list):
             similarity_map[unmapped_list[i]] += 1
     return similarity_map
 
-# read file into the two lists
-rigth_side,left_side = parse_file(path.as_posix()+"/input.txt")
+def run():
+    # read file into the two lists
+    rigth_side,left_side = parse_file(path.as_posix()+"/input.txt")
 
-# calculate the similarity between the two lists
-similarity = calculate_similarity(rigth_side, left_side)
-print(similarity)
-# correct answer is 17191599
+    # calculate the similarity between the two lists
+    similarity = calculate_similarity(rigth_side, left_side)
+    print(similarity)
+    # correct answer is 17191599
+
+run()
