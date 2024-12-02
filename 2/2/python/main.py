@@ -19,19 +19,34 @@ def read_file(file_name: str) -> dict:
 def find_safe_reports(dict_of_reports: dict) -> dict:
     safe_reports = 0
     for i in range(len(dict_of_reports)):
-        if is_safe(dict_of_reports[i]):
+        safe= is_safe(dict_of_reports[i])
+        if safe:
             safe_reports += 1
+            continue
+        # else:
+        #     del dict_of_reports[i][possible_infractor]
+        #     safe , _ = is_safe(dict_of_reports[i])
+        #     if safe:
+        #         safe_reports += 1
+        for j in range(len(dict_of_reports[i])):
+            temp = dict_of_reports[i].copy()
+            del temp[j]
+            safe = is_safe(temp)
+            if safe:
+                safe_reports += 1
+                break
+                      
     return safe_reports
 
-def is_safe(report: list) -> bool:
+def is_safe(report: list):
     compare_operator = operator.le if report[0] - report[-1] > 0 else operator.ge
     for i in range(len(report)):
         if i == 0:
             continue
         if compare_operator(report[i-1], report[i]):
-            return False
+            return False 
         if abs(report[i-1] - report[i]) > 3:
-            return False
+            return False 
 
     return True
 
@@ -42,4 +57,4 @@ def run():
 
 if __name__ == '__main__':
     print(run())
-    # correct answer is 572
+    #correct answer is 612
