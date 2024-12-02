@@ -40,7 +40,8 @@ def run():
 
     #calculate the distance between the two lists
     distance = calculate_distance(rigth_side, left_side)
-    print(distance)
+    return distance
 
-run()
-# correct answer is 1970720
+if __name__ == '__main__':
+    print(run())
+    # correct answer is 1970720

@@ -39,7 +39,8 @@ def run():
 
     # calculate the similarity between the two lists
     similarity = calculate_similarity(rigth_side, left_side)
-    print(similarity)
-    # correct answer is 17191599
+    return similarity
 
-run()
+if __name__ == '__main__':
+    print(run())
+    # correct answer is 17191599
