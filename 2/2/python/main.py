@@ -23,11 +23,6 @@ def find_safe_reports(dict_of_reports: dict) -> dict:
         if safe:
             safe_reports += 1
             continue
-        # else:
-        #     del dict_of_reports[i][possible_infractor]
-        #     safe , _ = is_safe(dict_of_reports[i])
-        #     if safe:
-        #         safe_reports += 1
         for j in range(len(dict_of_reports[i])):
             temp = dict_of_reports[i].copy()
             del temp[j]
