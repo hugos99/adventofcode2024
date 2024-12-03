@@ -29,22 +29,16 @@ def calculate_result(do_donts_instructions: list, search_area: str) -> int:
     current_instruction = {"instruction": "do", "index": 0}
     for instruction in do_donts_instructions:
         # switch the do and don't instructions
-        if instruction.group(1) == "do":
-            if current_instruction["instruction"] == "do":
-                continue
-            elif current_instruction["instruction"] == "don't":
-                current_instruction = {"instruction": "do", "index": instruction.end()}
-        elif instruction.group(1) == "don't":
-            if current_instruction["instruction"] == "do":
-                final_result += calculate_result_area(get_instructions_iterator(search_area[current_instruction["index"]:instruction.start()]))
-                current_instruction = {"instruction": "don't", "index": instruction.end()}
-            elif current_instruction["instruction"] == "don't":
-                continue
+        if (instruction.group(1) == "do" and current_instruction["instruction"] == "don't"):
+            current_instruction = {"instruction": "do", "index": instruction.end()}
+        elif (instruction.group(1) == "don't" and current_instruction["instruction"] == "do"):
+            final_result += calculate_result_area(get_instructions_iterator(search_area[current_instruction["index"]:instruction.start()]))
+            current_instruction = {"instruction": "don't", "index": instruction.end()}
             
+    #clean up the last instruction if it is a do
     if current_instruction["instruction"] == "do":
         final_result += calculate_result_area(get_instructions_iterator(search_area[current_instruction["index"]:-1]))
-            
-
+        
     return final_result
 
 def run():
@@ -55,4 +49,4 @@ def run():
 
 if __name__ == '__main__':
     print(run())
-    #correct answer is 612
+    #correct answer is 108830766
