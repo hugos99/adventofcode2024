@@ -21,7 +21,9 @@ proc is_safe(report: seq[int]): bool =
   return true
 
 proc kinda_safe(report: seq[int], index: int=0): bool =
-  return index == report.high or (is_safe(report) or is_safe(report.delete(index)) or kinda_safe(report, index + 1))
+  var temp_report = report
+  temp_report.delete(index)
+  return index == report.high or (is_safe(report) or is_safe(temp_report) or kinda_safe(report, index + 1))
 
 proc find_safe_reports(report_map: Table[int,seq[int]], index: int = 0): int =  
   if report_map.len() == index:
