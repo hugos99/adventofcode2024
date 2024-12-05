@@ -60,7 +60,7 @@ def count_sequences(matrix,sequence):
     return total_count
 
 def run():
-    matrix = read_file(path.as_posix() + "/input.txt")
+    matrix = read_file(path.as_posix() + "/input-t.txt")
     print_matrix(matrix)
     print("count_sequences:", count_sequences(matrix, [4,3,2,1]))
 
